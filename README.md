@@ -43,7 +43,7 @@ The project need to expose below endpoints, that can talk to database layer and 
 
 
 ## How to start the project?
-###There are two ways:-
+### There are two ways:-
 
 Since this project uses the MongoDB  to support our operations.
 1. Run on local machine 
@@ -62,23 +62,25 @@ Since this project uses the MongoDB  to support our operations.
 
 ## WE ARE READY?
 
-let's start the microservice project, so by default it will start on the port localhost:8080 now!
+lets start the microservice project, so by default it will start on the port localhost:8080 now!
 
 ## Swagger API
 
 > Access Swagger API page on the URL **http://localhost:8080/swagger-ui/**
 
-##Project Structure
+## Project Structure
 
 -  **controller**: contains the REST end points for application.
 - **service**: service layer of application, fulfilling business logic
 - **repository**: Its an interface which allows various operations on Animals & Rooms objects. It gets these operations by extending MongoTemplate.
 
-Spring boot usees some default properties for interacting with MongoDB, e.g:
+Spring boot uses some default properties for interacting with MongoDB, e.g:
 >spring.data.mongodb.port=27017 # Mongo server port. 
-spring.data.mongodb.repositories.enabled=true # Enable Mongo repositories. spring.data.mongodb.uri=mongodb://localhost/test
+spring.data.mongodb.repositories.enabled=true # Enable Mongo repositories. 
+spring.data.mongodb.uri=mongodb://localhost/test
 
-##Testing the Application
+## Testing the Application
+
 For testing this application, I have used JUnit and Mockito. All these dependencies are maintained by Spring Boot. Check pom.xml for "spring-boot-starter-test" dependency , it is taking care of all underlying dependencies and latest versions of these open source projects.
 
    - **Testing controller**: AnimalControllerTest & RoomControllerTest contains various tests for AnimalController and RoomController. There are tests for both sucess and failure scenarios. --MockMvc is used to mock various POST, GET and DELETE calls. --Mockito is used to mock the AnimalService & RoomService and return the reponse from mocked service instead of hitting actual service and DB.
