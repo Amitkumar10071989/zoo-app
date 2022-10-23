@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+   name: zooapp-db-config
+data:
+ host: zooapp-db-service
+ database: zooapp

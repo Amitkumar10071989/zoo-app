@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zooappdb
+  name: zooappdb-service
+spec:
+  ports:
+  - port: 27017
+    targetPort: 27017
+  selector:
+    app: zooappdb
+  clusterIP: None
+    
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zooappdb
+  labels:
+    app: zooappdb
+spec:
+  selector: 
+    matchLabels:
+      app: zooappdb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zooappdb
+      name: zooappdb-service
+
+      
+    spec:
+      containers:
+      - image: mongo:latest
+        name: zooappdb     
+                
+        ports:
+        - containerPort: 27017
+          name: zooappdb 

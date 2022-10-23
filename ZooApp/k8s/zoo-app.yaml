@@ -1,0 +1,45 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: zoo-service
+spec:
+  selector:
+    app: zoo-service
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 30081
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zoo-service
+spec:
+  selector:
+      matchLabels:
+        app: zoo-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: zoo-service
+    spec:
+      containers:
+        - name: zoo-service
+          image: zooapp:1.0
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8080
+          env:
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: zooapp-db-config  
+                  key: database
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: zooapp-db-config 
+                  key: host
+                  
